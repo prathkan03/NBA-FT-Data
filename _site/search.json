@@ -9,7 +9,7 @@
   {
     "objectID": "about.html#about-me",
     "href": "about.html#about-me",
-    "title": "About",
+    "title": "About Me",
     "section": "",
     "text": "My name is Pratham Kancherla and I am a sophomore at The Ohio State University. My major is Computer Science & Engineering and I am proficient in Python, Java, R, HTML."
   },
@@ -18,14 +18,49 @@
     "href": "about.html#about-my-project",
     "title": "About Me",
     "section": "About My Project",
-    "text": "About My Project\nThis project will focus on analyzing each of the 5 positions in basketball, the PG (Point Guard), SG (Shooting Guard), SF (Small Forward), PF (Power Forward), C (Center), and finding the position with the best average FT%. The dataset I will be using can be found here."
+    "text": "About My Project\nThis project will focus on analyzing each of the 5 positions in basketball, the PG (Point Guard), SG (Shooting Guard), SF (Small Forward), PF (Power Forward), C (Center), and finding the position with the best average FT%. The data set I will be using can be found here.\nThis project would not have been possible without the knowledge gained from Kane’s Data Science Bootcamp."
+  },
+  {
+    "objectID": "about.html#contact-inforamtion",
+    "href": "about.html#contact-inforamtion",
+    "title": "About Me",
+    "section": "Contact Inforamtion",
+    "text": "Contact Inforamtion\nEmail: pratham.kancherla@gmail.com.\nLinkedIn Profile: https://www.linkedin.com/in/pratham-kancherla-81b6211bb/\nGitHub: https://github.com/prathkan03"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "NBA FT% at Each Position",
+    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
     "section": "",
-    "text": "Center Predicted FT%\n\n\n\n\n\n\nPower Forward Predicted FT%\n\n\n\n\n\n\nSmall Forward Predicted FT%\n\n\n\n\n\n\nShooting Guard Predicted FT%\n\n\n\n\n\n\nPoint Guard Predicted FT%"
+    "text": "There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain FT% determined from how many free throws they miss or make during the season. We can take a look at some FT% at each position in the NBA."
+  },
+  {
+    "objectID": "index.html#nba",
+    "href": "index.html#nba",
+    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
+    "section": "",
+    "text": "There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain FT% determined from how many free throws they miss or make during the season. We can take a look at some FT% at each position in the NBA."
+  },
+  {
+    "objectID": "index.html#ft-at-each-position-2022-23",
+    "href": "index.html#ft-at-each-position-2022-23",
+    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
+    "section": "FT% at Each Position (2022-23)",
+    "text": "FT% at Each Position (2022-23)\nPG: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)\nSG: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)\nSF: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)\nPF: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)\nC: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)\nAs we can see, the guard positions seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game."
+  },
+  {
+    "objectID": "index.html#nba-predicted-ft-at-each-position",
+    "href": "index.html#nba-predicted-ft-at-each-position",
+    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
+    "section": "NBA Predicted FT% at Each Position",
+    "text": "NBA Predicted FT% at Each Position\nCenter Predicted FT%\n\n\n\n\n\nPower Forward Predicted FT%\n\n\n\n\n\nSmall Forward Predicted FT%\n\n\n\n\n\nShooting Guard Predicted FT%\n\n\n[1] 0.8174668\n\n\n\n\n\nPoint Guard Predicted FT%"
+  },
+  {
+    "objectID": "index.html#project-summary",
+    "href": "index.html#project-summary",
+    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
+    "section": "Project Summary",
+    "text": "Project Summary\nNBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players’ free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. The predicted FT% for the 2023-24 NBA season for a PG is 76%, 81% for an SG, 78% for an SF, 75.5% for a PF, and 71% for a C."
   },
   {
     "objectID": "model.html",
@@ -33,13 +68,6 @@
     "title": "Model",
     "section": "",
     "text": "Center Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 60\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.7    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nPower Forward Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 94\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nSmall Forward Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 104\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nShooting Guard Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 120\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\nPoint Guard Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 137\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.2    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg"
-  },
-  {
-    "objectID": "about.html#contact-inforamtion",
-    "href": "about.html#contact-inforamtion",
-    "title": "About Me",
-    "section": "Contact Inforamtion",
-    "text": "Contact Inforamtion\nEmail: pratham.kancherla@gmail.com.\nLinkedIn Profile: https://www.linkedin.com/in/pratham-kancherla-81b6211bb/\nGitHub: https://github.com/prathkan03\nBootcamp: Kane’s Data Science Bootcamp."
   },
   {
     "objectID": "sources.html",
