@@ -9,10 +9,11 @@ website:
         text: Home
       - about.qmd
       - model.qmd
+      - sources.qmd
 
 format:
   html:
-    theme: zephyr
+    theme: darkly
     css: styles.css
     toc: true
 

@@ -1,12 +1,16 @@
 ---
-title: "About"
+title: "About Me"
 ---
-## About Me
 My name is [Pratham Kancherla](https://github.com/prathkan03) and I am a sophomore at The Ohio State University. My major is Computer Science & Engineering and I am proficient in Python, Java, R, HTML.
 
 ## About My Project
 This project will focus on analyzing each of the 5 positions in basketball, the PG (Point Guard), SG (Shooting Guard), SF (Small Forward), PF (Power Forward), C (Center), and finding the position with the best average FT%. The dataset I will be using can be found [here](https://www.fantasypros.com/nba/stats/avg-overall.php).
 
-Feel free to contact me through my email, [pratham.kancherla@gmail.com](pratham.kancherla@gmail.com).
+## Contact Inforamtion
+Email: [pratham.kancherla@gmail.com](https://mail.google.com/).
 
-This project was created as a part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info).
+LinkedIn Profile: [ https://www.linkedin.com/in/pratham-kancherla-81b6211bb/](https://www.linkedin.com/in/pratham-kancherla-81b6211bb/)
+
+GitHub: [https://github.com/prathkan03](https://github.com/prathkan03)
+
+Bootcamp: [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info).

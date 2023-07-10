@@ -10,8 +10,9 @@ execute:
 library(tidyverse)
 library(rstanarm)
 library(ggplot2)
+library(plotly)
 ```
-**Center** Fitted Object
+**Center** Predicted FT% 
 ```{r}
 c_stats<- read_csv("data/C_stats.csv")|>
   filter(MIN >=20)|>
@@ -29,8 +30,8 @@ pe_c <- posterior_epred(object = fit_obj_c,
         as_tibble()
 est_avg_ft_c<- pe_c |> 
   ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_c$`1`), linetype = "dotted", lwd = 1.5) +
-    labs(title = "Posterior Estimated Predicition FT% for Centers",
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + geom_vline(xintercept = median(pe_c$`1`), linetype = "dotted", lwd = 1.5) +
+    labs(title = "Posterior Estimated Pblackicition FT% for Centers",
          subtitle = "Note that the plot is only consistent of estimated values",
          x = "Estimated Average FT%",
          y = "Probability",
@@ -38,9 +39,9 @@ est_avg_ft_c<- pe_c |>
     scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
     theme_classic()+theme()
-est_avg_ft_c
+ggplotly(est_avg_ft_c)
 ```
-**Power Forward** Fitted Object
+**Power Forward** Predicted FT%
 ```{r}
 pf_stats<- read_csv("data/PF_stats.csv")|>
   filter(MIN >=20)|>
@@ -59,7 +60,7 @@ pe_pf <- posterior_epred(object = fit_obj_pf,
         as_tibble()
 est_avg_ft_pf<- pe_pf|> 
   ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_pf$`1`), linetype = "dotted", lwd = 1.5)+
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + geom_vline(xintercept = median(pe_pf$`1`), linetype = "dotted", lwd = 1.5)+
     labs(title = "Posterior Estimated Predicition FT% for Power Forwards",
          subtitle = "Note that the plot is only consistent of estimated values",
          x = "Estimated Average FT%",
@@ -68,9 +69,9 @@ est_avg_ft_pf<- pe_pf|>
     scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
     theme_classic()+theme()
-est_avg_ft_pf
+ggplotly(est_avg_ft_pf)
 ```
-**Small Forward** Fitted Object
+**Small Forward** Predicted FT%
 ```{r}
 sf_stats<- read_csv("data/SF_stats.csv")|>
   filter(MIN >=20)|>
@@ -89,7 +90,7 @@ pe_sf <- posterior_epred(object = fit_obj_sf,
         as_tibble()
 est_avg_ft_sf<- pe_sf |> 
   ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_sf$`1`), linetype = "dotted", lwd = 1.5) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + geom_vline(xintercept = median(pe_sf$`1`), linetype = "dotted", lwd = 1.5) +
     labs(title = "Posterior Estimated Predicition FT% for Small Forwards",
          subtitle = "Note that the plot is only consistent of estimated values",
          x = "Estimated Average FT%",
@@ -98,9 +99,9 @@ est_avg_ft_sf<- pe_sf |>
     scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
     theme_classic()+theme()
-est_avg_ft_sf
+ggplotly(est_avg_ft_sf)
 ```
-**Shooting Guard** Fitted Object
+**Shooting Guard** Predicted FT%
 ```{r}
 sg_stats<- read_csv("data/SG_stats.csv")|>
   filter(MIN >=20)|>
@@ -120,7 +121,7 @@ pe_sg <- posterior_epred(object = fit_obj_sg,
 
 est_avg_ft_sg<- pe_sg |> 
   ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_sg$`1`), linetype = "dotted", lwd = 1.5)+
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + geom_vline(xintercept = median(pe_sg$`1`), linetype = "dotted", lwd = 1.5)+
     labs(title = "Posterior Estimated Predicition FT% for Shooting Gaurds",
          subtitle = "Note that the plot is only consistent of estimated values",
          x = "Estimated Average FT%",
@@ -129,9 +130,9 @@ est_avg_ft_sg<- pe_sg |>
     scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
     theme_classic()+theme()
-est_avg_ft_sg
+ggplotly(est_avg_ft_sg)
 ```
-**Point Guard** Fitted Object
+**Point Guard** Predicted FT%
 ```{r}
 pg_stats<- read_csv("data/PG_stats.csv")|>
   filter(MIN >=20)|>
@@ -150,7 +151,7 @@ pe_pg <- posterior_epred(object = fit_obj_pg,
         as_tibble()
 est_avg_ft_pg<- pe_pg |> 
   ggplot(aes(x = `1`)) +
-    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_pg$`1`), linetype = "dotted", lwd = 1.5)+
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + geom_vline(xintercept = median(pe_pg$`1`), linetype = "dotted", lwd = 1.5)+
     labs(title = "Posterior Estimated Predicition FT% for Point Gaurds",
          subtitle = "Note that the plot is only consistent of estimated values",
          x = "Estimated Average FT%",
@@ -159,6 +160,6 @@ est_avg_ft_pg<- pe_pg |>
     scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
     scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
     theme_classic()+theme()
-est_avg_ft_pg
+ggplotly(est_avg_ft_pg)
 ```
 

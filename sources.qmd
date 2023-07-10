@@ -1,0 +1,22 @@
+---
+title: "Sources"
+editor: visual
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+## Links
+
+**PG**: [https://www.fantasypros.com/nba/stats/avg-pg.php](https://www.fantasypros.com/nba/stats/avg-pg.php)
+
+**SG**: [https://www.fantasypros.com/nba/stats/avg-sg.php](https://www.fantasypros.com/nba/stats/avg-sg.php)
+
+**SF**: [https://www.fantasypros.com/nba/stats/avg-sf.php](https://www.fantasypros.com/nba/stats/avg-sf.php)
+
+**PF**: [https://www.fantasypros.com/nba/stats/avg-pf.php](https://www.fantasypros.com/nba/stats/avg-pf.php)
+
+**C**: [https://www.fantasypros.com/nba/stats/avg-c.php](https://www.fantasypros.com/nba/stats/avg-c.php)
+
+When I had first gotten the data, I first selected the free throw attempted and free throws made columns. Next, I had to clean the data to eliminate outliers, which were players that did not attempt enough free throws. Next, I created a predicted estimated to create a fitted object and then used a histogram to visually represent the prediction. I have also displayed the median vertical line on the histogram.

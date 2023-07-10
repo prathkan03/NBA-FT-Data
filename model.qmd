@@ -11,7 +11,7 @@ library(tidyverse)
 library(rstanarm)
 library(ggplot2)
 ```
-
+**Center** Fitted Object
 ```{r}
 c_stats<- read_csv("data/C_stats.csv")|>
   filter(MIN >=20)|>
@@ -23,7 +23,7 @@ fit_obj_c <- stan_glm(data = c_stats,
                     seed = 9)
 fit_obj_c
 ```
-
+**Power Forward** Fitted Object
 ```{r}
 pf_stats<- read_csv("data/PF_stats.csv")|>
   filter(MIN >=20)|>
@@ -36,7 +36,7 @@ fit_obj_pf <- stan_glm(data = pf_stats,
                     seed = 9)
 fit_obj_pf
 ```
-
+**Small Forward** Fitted Object
 ```{r}
 sf_stats<- read_csv("data/SF_stats.csv")|>
   filter(MIN >=20)|>
@@ -49,7 +49,7 @@ fit_obj_sf <- stan_glm(data = sf_stats,
                     seed = 9)
 fit_obj_sf
 ```
-
+**Shooting Guard** Fitted Object
 ```{r}
 sg_stats<- read_csv("data/SG_stats.csv")|>
   filter(MIN >=20)|>
@@ -63,7 +63,7 @@ fit_obj_sg <- stan_glm(data = sg_stats,
 fit_obj_sg
 
 ```
-
+**Point Guard** Fitted Object
 ```{r}
 pg_stats<- read_csv("data/PG_stats.csv")|>
   filter(MIN >=20)|>
