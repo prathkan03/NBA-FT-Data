@@ -1,5 +1,5 @@
 ---
-title: "final_project_NBA_Data"
+title: "NBA FT% at Each Position"
 author: "Pratham Kancherla"
 execute:
   echo: false
@@ -9,19 +9,36 @@ execute:
 ```{r}
 library(tidyverse)
 library(rstanarm)
+library(ggplot2)
 ```
 **Center** Fitted Object
 ```{r}
-{r}
 c_stats<- read_csv("data/C_stats.csv")|>
   filter(MIN >=20)|>
-  arrange(desc(`FT%`))
+  arrange((`FT%`))
 fit_obj_c <- stan_glm(data = c_stats,
                     formula = `FT%` ~ 1,
                     family = gaussian,
                     refresh = 0,
                     seed = 9)
-fit_obj_c
+#fit_obj_c
+newobs <- tibble(.rows = 1)
+
+pe_c <- posterior_epred(object = fit_obj_c,
+                      newdata = newobs) |> 
+        as_tibble()
+est_avg_ft_c<- pe_c |> 
+  ggplot(aes(x = `1`)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_c$`1`), linetype = "dotted", lwd = 1.5) +
+    labs(title = "Posterior Estimated Predicition FT% for Centers",
+         subtitle = "Note that the plot is only consistent of estimated values",
+         x = "Estimated Average FT%",
+         y = "Probability",
+         caption = "Data source: FantasyPros") + 
+    scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    theme_classic()+theme()
+est_avg_ft_c
 ```
 **Power Forward** Fitted Object
 ```{r}
@@ -34,7 +51,24 @@ fit_obj_pf <- stan_glm(data = pf_stats,
                     family = gaussian,
                     refresh = 0,
                     seed = 9)
-fit_obj_pf
+#fit_obj_pf
+newobs <- tibble(.rows = 1)
+
+pe_pf <- posterior_epred(object = fit_obj_pf,
+                      newdata = newobs) |> 
+        as_tibble()
+est_avg_ft_pf<- pe_pf|> 
+  ggplot(aes(x = `1`)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_pf$`1`), linetype = "dotted", lwd = 1.5)+
+    labs(title = "Posterior Estimated Predicition FT% for Power Forwards",
+         subtitle = "Note that the plot is only consistent of estimated values",
+         x = "Estimated Average FT%",
+         y = "Probability",
+         caption = "Data source: Fantasy Pros") + 
+    scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    theme_classic()+theme()
+est_avg_ft_pf
 ```
 **Small Forward** Fitted Object
 ```{r}
@@ -47,7 +81,24 @@ fit_obj_sf <- stan_glm(data = sf_stats,
                     family = gaussian,
                     refresh = 0,
                     seed = 9)
-fit_obj_sf
+#fit_obj_sf
+newobs <- tibble(.rows = 1)
+
+pe_sf <- posterior_epred(object = fit_obj_sf,
+                      newdata = newobs) |> 
+        as_tibble()
+est_avg_ft_sf<- pe_sf |> 
+  ggplot(aes(x = `1`)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_sf$`1`), linetype = "dotted", lwd = 1.5) +
+    labs(title = "Posterior Estimated Predicition FT% for Small Forwards",
+         subtitle = "Note that the plot is only consistent of estimated values",
+         x = "Estimated Average FT%",
+         y = "Probability",
+         caption = "Data source: FantasyPros") + 
+    scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    theme_classic()+theme()
+est_avg_ft_sf
 ```
 **Shooting Guard** Fitted Object
 ```{r}
@@ -60,7 +111,25 @@ fit_obj_sg <- stan_glm(data = sg_stats,
                     family = gaussian,
                     refresh = 0,
                     seed = 9)
-fit_obj_sg
+#fit_obj_sg
+newobs <- tibble(.rows = 1)
+
+pe_sg <- posterior_epred(object = fit_obj_sg,
+                      newdata = newobs) |> 
+        as_tibble()
+
+est_avg_ft_sg<- pe_sg |> 
+  ggplot(aes(x = `1`)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_sg$`1`), linetype = "dotted", lwd = 1.5)+
+    labs(title = "Posterior Estimated Predicition FT% for Shooting Gaurds",
+         subtitle = "Note that the plot is only consistent of estimated values",
+         x = "Estimated Average FT%",
+         y = "Probability",
+         caption = "Data source: FantasyPros") + 
+    scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    theme_classic()+theme()
+est_avg_ft_sg
 ```
 **Point Guard** Fitted Object
 ```{r}
@@ -73,6 +142,23 @@ fit_obj_pg <- stan_glm(data = pg_stats,
                     family = gaussian,
                     refresh = 0,
                     seed = 9)
-fit_obj_pg
+#fit_obj_pg
+newobs <- tibble(.rows = 1)
+
+pe_pg <- posterior_epred(object = fit_obj_pg,
+                      newdata = newobs) |> 
+        as_tibble()
+est_avg_ft_pg<- pe_pg |> 
+  ggplot(aes(x = `1`)) +
+    geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "red", color = "blue") + geom_vline(xintercept = median(pe_pg$`1`), linetype = "dotted", lwd = 1.5)+
+    labs(title = "Posterior Estimated Predicition FT% for Point Gaurds",
+         subtitle = "Note that the plot is only consistent of estimated values",
+         x = "Estimated Average FT%",
+         y = "Proabability",
+         caption = "Data source: FantasyPros") + 
+    scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
+    scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
+    theme_classic()+theme()
+est_avg_ft_pg
 ```
 
