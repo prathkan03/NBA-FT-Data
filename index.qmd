@@ -25,7 +25,6 @@ There are many great players in each of these positions. Each player in these po
 **C**: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)
 
 
-As we can see, the guard positions seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game. 
 ```{r}
 library(tidyverse)
 library(rstanarm)
@@ -244,6 +243,8 @@ est_avg_ft_pg<- pe_pg |>
 
 (est_avg_ft_pg)
 ```
+
+As we can see, the guard positions seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game. 
 
 ## Project Summary
 NBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players' free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. The predicted FT% for the 2023-24 NBA season for a PG is 76%, 81% for an SG, 78% for an SF, 75.5% for a PF, and 71% for a C.
