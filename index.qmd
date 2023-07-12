@@ -6,38 +6,22 @@ execute:
   message: false
   warning: false
 ---
-## NBA
-
-There are five positions in the NBA: **Point Guard** (PG), **Shooting Guard** (SG), **Small Forward** (SF), **Power Forward** (PF), **Center** (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position. 
-
-
-There are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA.
-
-## FT% at Each Position Examples(2022-23)
-**PG**: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)
-
-**SG**: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)
-
-**SF**: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)
-
-**PF**: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)
-
-**C**: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)
-
 
 ```{r}
 library(tidyverse)
 library(rstanarm)
 library(ggplot2)
 library(plotly)
+library(dplyr)
 ```
-## NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season
+
+## NBA Player's Free Throw Efficiency
 
 ```{r}
-c_stats<- read_csv("data/C_stats.csv")|>
+c_stats <-read_csv("data/C_stats.csv")|>
   filter(MIN >=20)|>
-  arrange((`FT%`))
-
+  arrange(desc(`FT%`))|>
+  select("Player", "Positions",`FT%`, FTM)
 
 fit_obj_c <- stan_glm(data = c_stats,
                     formula = `FT%` ~ 1,
@@ -52,15 +36,13 @@ newobs <- tibble(.rows = 1)
 pe_c <- posterior_epred(object = fit_obj_c,
                       newdata = newobs) |> 
         as_tibble()
-
-
 ```
-
 
 ```{r}
 pf_stats<- read_csv("data/PF_stats.csv")|>
   filter(MIN >=20)|>
-  arrange(desc(`FT%`))
+  arrange(desc(`FT%`))|>
+  select("Player", "Positions", `FT%`, FTM)
 
 
 
@@ -80,11 +62,11 @@ pe_pf <- posterior_epred(object = fit_obj_pf,
 
 ```
 
-
 ```{r}
 sf_stats<- read_csv("data/SF_stats.csv")|>
   filter(MIN >=20)|>
-  arrange(desc(`FT%`))
+  arrange(desc(`FT%`))|>
+  select("Player", "Positions", `FT%`, FTM)
 
 
 
@@ -104,11 +86,11 @@ pe_sf <- posterior_epred(object = fit_obj_sf,
 
 ```
 
-
 ```{r}
 sg_stats<- read_csv("data/SG_stats.csv")|>
   filter(MIN >=20)|>
-  arrange(desc(`FT%`))
+  arrange(desc(`FT%`))|>
+  select("Player", "Positions", `FT%`, FTM)
 
 
 
@@ -131,8 +113,8 @@ pe_sg <- posterior_epred(object = fit_obj_sg,
 ```{r}
 pg_stats<- read_csv("data/PG_stats.csv")|>
   filter(MIN >=20)|>
-  arrange(desc(`FT%`))
-
+  arrange(desc(`FT%`))|>
+  select("Player", "Positions", `FT%`, FTM)
 
 
 fit_obj_pg <- stan_glm(data = pg_stats,
@@ -150,8 +132,44 @@ pe_pg <- posterior_epred(object = fit_obj_pg,
 ```
 
 ```{r}
+all_players <- bind_rows(pg_stats, sg_stats, sf_stats, pf_stats, c_stats)
+player<- all_players|>
+  ggplot(aes(x = FTM, y = `FT%`, fill = Player, text = paste("Position:", Positions)))+
+  geom_point()+
+  theme_classic()+
+  labs(
+    title = "NBA Players with the Best Free Throw Efficiency",
+    x = "Free Throws Made",
+    y = "Free Throw Percentage %"
+  )+
+  theme(legend.position = "none")
 
-position <- c("Poing Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center")
+ggplotly(player)
+```
+
+## NBA
+
+There are five positions in the NBA: **Point Guard** (PG), **Shooting Guard** (SG), **Small Forward** (SF), **Power Forward** (PF), **Center** (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.
+
+There are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA.
+
+## FT% at Each Position Examples(2022-23)
+
+**PG**: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)
+
+**SG**: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)
+
+**SF**: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)
+
+**PF**: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)
+
+**C**: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)
+
+## NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season
+
+```{r}
+
+position <- c("Point Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center")
 median_val <- c(median(pe_pg$`1`),median(pe_sg$`1`),median(pe_sf$`1`),median(pe_pf$`1`),median(pe_c$`1`) )
 
 myTable <- data.frame(Position = position, Median = median_val)
@@ -172,8 +190,8 @@ ggplotly(gg_bar)
 
 ```
 
-
-As we can see, the guard positions, especially the Shooting Guards (SG), seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game.
+As we can see, the guard positions, especially the Shooting Guards (SG), seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average.
 
 ## Project Summary
-NBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players' free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. The predicted FT% for the 2023-24 NBA season for a PG is 76%, 81% for an SG, 78% for an SF, 75.5% for a PF, and 71% for a C.
+
+NBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players' free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. From this data, as mentioned before, the guards have a better free throw percentage than forwards and centers.

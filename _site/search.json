@@ -28,18 +28,11 @@
     "text": "Contact Inforamtion\nEmail: pratham.kancherla@gmail.com.\nLinkedIn Profile: https://www.linkedin.com/in/pratham-kancherla-81b6211bb/\nGitHub: https://github.com/prathkan03"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
-    "section": "",
-    "text": "There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA."
-  },
-  {
     "objectID": "index.html#nba",
     "href": "index.html#nba",
     "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
-    "section": "",
-    "text": "There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA."
+    "section": "NBA",
+    "text": "NBA\nThere are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA."
   },
   {
     "objectID": "index.html#ft-at-each-position-examples2022-23",
@@ -53,21 +46,21 @@
     "href": "index.html#nba-predicted-free-throw-percentage-ft-at-each-position-for-2023-24-season",
     "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
     "section": "NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season",
-    "text": "NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season\n\n\n\n\n\n\nAs we can see, the guard positions, especially the Shooting Guards (SG), seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game."
+    "text": "NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season\n\n\n\n\n\n\nAs we can see, the guard positions, especially the Shooting Guards (SG), seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average."
   },
   {
     "objectID": "index.html#project-summary",
     "href": "index.html#project-summary",
     "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
     "section": "Project Summary",
-    "text": "Project Summary\nNBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players’ free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. The predicted FT% for the 2023-24 NBA season for a PG is 76%, 81% for an SG, 78% for an SF, 75.5% for a PF, and 71% for a C."
+    "text": "Project Summary\nNBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players’ free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage."
   },
   {
     "objectID": "model.html",
     "href": "model.html",
     "title": "Model",
     "section": "",
-    "text": "Center Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 60\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.7    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\n\n\n\n\n\nPower Forward Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 94\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\n\n\n\n\n\nSmall Forward Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 104\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\n\n\n\n\n\nShooting Guard Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 120\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.1    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg\n\n\n\n\n[1] 0.8174668\n\n\n\n\n\nPoint Guard Fitted Object\n\n\nstan_glm\n family:       gaussian [identity]\n formula:      `FT%` ~ 1\n observations: 137\n predictors:   1\n------\n            Median MAD_SD\n(Intercept) 0.8    0.0   \n\nAuxiliary parameter(s):\n      Median MAD_SD\nsigma 0.2    0.0   \n\n------\n* For help interpreting the printed output see ?print.stanreg\n* For info on the priors used see ?prior_summary.stanreg"
+    "text": "Center Fitted Object\n\n\n\n\n\nPower Forward Fitted Object\n\n\n\n\n\nSmall Forward Fitted Object\n\n\n\n\n\nShooting Guard Fitted Object\n\n\n\n\n\nPoint Guard Fitted Object"
   },
   {
     "objectID": "sources.html",
