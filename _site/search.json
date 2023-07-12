@@ -42,11 +42,11 @@
     "text": "There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position.\nThere are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA."
   },
   {
-    "objectID": "index.html#ft-at-each-position-2022-23",
-    "href": "index.html#ft-at-each-position-2022-23",
-    "title": "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season",
-    "section": "FT% at Each Position (2022-23)",
-    "text": "FT% at Each Position (2022-23)\nPG: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)\nSG: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)\nSF: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)\nPF: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)\nC: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)"
+    "objectID": "index.html#ft-at-each-position-examples2022-23",
+    "href": "index.html#ft-at-each-position-examples2022-23",
+    "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
+    "section": "FT% at Each Position Examples(2022-23)",
+    "text": "FT% at Each Position Examples(2022-23)\nPG: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)\nSG: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)\nSF: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)\nPF: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)\nC: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)"
   },
   {
     "objectID": "index.html#nba-predicted-free-throw-percentage-ft-at-each-position-for-2023-24-season",
@@ -82,12 +82,5 @@
     "title": "Sources",
     "section": "",
     "text": "PG: https://www.fantasypros.com/nba/stats/avg-pg.php\nSG: https://www.fantasypros.com/nba/stats/avg-sg.php\nSF: https://www.fantasypros.com/nba/stats/avg-sf.php\nPF: https://www.fantasypros.com/nba/stats/avg-pf.php\nC: https://www.fantasypros.com/nba/stats/avg-c.php\nWhen I had first gotten the data, I first selected the free throw attempted and free throws made columns. Next, I had to clean the data to eliminate outliers, which were players that did not attempt enough free throws. Next, I created a predicted estimated to create a fitted object and then used a histogram to visually represent the prediction. I have also displayed the median vertical line on the histogram."
-  },
-  {
-    "objectID": "index.html#ft-at-each-position-examples2022-23",
-    "href": "index.html#ft-at-each-position-examples2022-23",
-    "title": "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?",
-    "section": "FT% at Each Position Examples(2022-23)",
-    "text": "FT% at Each Position Examples(2022-23)\nPG: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)\nSG: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)\nSF: Jayson Tatum (85.4%), Kevin Durant (91.9%), LeBron James (76.8%)\nPF: Karl-Anthony Towns (87.4%), Giannis Antetokounmpo (64.5%), Pascal Siakam (77.4%)\nC: Anthony Davis (78.4%), Nikola Jokic (82.2%), Joel Embiid (85.7%)"
   }
 ]

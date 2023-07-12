@@ -151,7 +151,7 @@ pe_pg <- posterior_epred(object = fit_obj_pg,
 
 ```{r}
 
-position <- c("PG", "SG", "SF", "PF", "C")
+position <- c("Poing Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center")
 median_val <- c(median(pe_pg$`1`),median(pe_sg$`1`),median(pe_sf$`1`),median(pe_pf$`1`),median(pe_c$`1`) )
 
 myTable <- data.frame(Position = position, Median = median_val)
@@ -165,6 +165,7 @@ gg_bar <-myTable|>
     x = "NBA Position",
     y = "Predicted FT%"
   )+
+  scale_y_continuous(labels = scales::percent_format())+
   theme_classic()
 
 ggplotly(gg_bar)
