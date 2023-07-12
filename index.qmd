@@ -1,5 +1,5 @@
 ---
-title: "Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season"
+title: "What will be the Predicted Free Throw Percentage (FT%) at Each Position for the 2023-2024 NBA Season?"
 author: "Pratham Kancherla"
 execute:
   echo: false
@@ -8,12 +8,12 @@ execute:
 ---
 ## NBA
 
-There are five positions in the NBA: Point Guard (PG), Shooting Guard (SG), Small Forward (SF), Power Forward (PF), Center (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position. 
+There are five positions in the NBA: **Point Guard** (PG), **Shooting Guard** (SG), **Small Forward** (SF), **Power Forward** (PF), **Center** (C). Each position is vital to every team and every player must provide a strong effort to fulfill their role in their respected position. 
 
 
-There are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain FT% determined from how many free throws they miss or make during the season. We can take a look at some FT% at each position in the NBA.
+There are many great players in each of these positions. Each player in these positions, given that they play more than an average of 20 minutes, have a certain Free Throw % calculated from the ratio of made free throws to total free throws attempted. We can take a look at some FT% at each position in the NBA.
 
-## FT% at Each Position (2022-23)
+## FT% at Each Position Examples(2022-23)
 **PG**: Stephen Curry (91.5%), Kyrie Irving (90.5%), Damian Lillard (91.4%)
 
 **SG**: Donovan Mitchell (86.7%), Devin Booker (85.5%), Zach LaVine (84.8%)
@@ -31,10 +31,8 @@ library(rstanarm)
 library(ggplot2)
 library(plotly)
 ```
-## NBA Predicted FT% at Each Position
+## NBA Predicted Free Throw Percentage (FT%) at Each Position for 2023-24 Season
 
-
-**Center** Predicted FT% 
 ```{r}
 c_stats<- read_csv("data/C_stats.csv")|>
   filter(MIN >=20)|>
@@ -56,27 +54,9 @@ pe_c <- posterior_epred(object = fit_obj_c,
         as_tibble()
 
 
-
-est_avg_ft_c<- pe_c |>
-  ggplot(aes(x = `1`)) +
-  geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") +
-  geom_vline(xintercept = median(pe_c$`1`), linetype = "dotted", lwd = 1.5) +
-  annotate("text", x = median(pe_c$`1`)+.02, y = .026, label = "Median: 71.69%", vjust = -1)+
-  labs(title = "Posterior Estimated Predicted Free Throw% for Centers",
-         subtitle = "The median predicted value for centers is around 70-72%",
-         x = "Estimated Average FT%",
-         y = "Probability",
-         caption = "Data source: FantasyPros") + 
-  scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  theme_classic()+
-  theme()
-
-(est_avg_ft_c)
 ```
 
 
-**Power Forward** Predicted FT%
 ```{r}
 pf_stats<- read_csv("data/PF_stats.csv")|>
   filter(MIN >=20)|>
@@ -98,28 +78,9 @@ pe_pf <- posterior_epred(object = fit_obj_pf,
                       newdata = newobs) |> 
         as_tibble()
 
-
-est_avg_ft_pf<- pe_pf|> 
-  ggplot(aes(x = `1`)) +
-  geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") +
-  geom_vline(xintercept = median(pe_pf$`1`), linetype = "dotted", lwd = 1.5)+
-  annotate("text", x = median(pe_pf$`1`)+.011, y = .033, label = "Median: 75.57%", vjust = -1)+
-  labs(title = "Posterior Estimated Predicition FT% for Power Forwards",
-         subtitle = "Note that the plot is only consistent of estimated values",
-         x = "Estimated Average FT%",
-         y = "Probability",
-         caption = "Data source: Fantasy Pros") + 
-  scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  theme_classic()+
-  theme()
-
-
-(est_avg_ft_pf)
 ```
 
 
-**Small Forward** Predicted FT%
 ```{r}
 sf_stats<- read_csv("data/SF_stats.csv")|>
   filter(MIN >=20)|>
@@ -141,28 +102,9 @@ pe_sf <- posterior_epred(object = fit_obj_sf,
                       newdata = newobs) |> 
         as_tibble()
 
-
-est_avg_ft_sf<- pe_sf |> 
-  ggplot(aes(x = `1`)) +
-  geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") + 
-  geom_vline(xintercept = median(pe_sf$`1`), linetype = "dotted", lwd = 1.5) +
-  annotate("text", x = median(pe_sf$`1`)+.011, y = .03, label = "Median: 78.37%", vjust = -1)+
-  labs(title = "Posterior Estimated Predicition FT% for Small Forwards",
-       subtitle = "Note that the plot is only consistent of estimated values",
-       x = "Estimated Average FT%",
-       y = "Probability",
-       caption = "Data source: FantasyPros") + 
-  scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  theme_classic()+
-  theme()
-  
-
-est_avg_ft_sf
 ```
 
 
-**Shooting Guard** Predicted FT%
 ```{r}
 sg_stats<- read_csv("data/SG_stats.csv")|>
   filter(MIN >=20)|>
@@ -184,28 +126,8 @@ newobs <- tibble(.rows = 1)
 pe_sg <- posterior_epred(object = fit_obj_sg,
                       newdata = newobs) |> 
         as_tibble()
-
-median(pe_sg$`1`)
-est_avg_ft_sg<- pe_sg |> 
-  ggplot(aes(x = `1`)) +
-  geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") +
-  geom_vline(xintercept = median(pe_sg$`1`), linetype = "dotted", lwd = 1.5)+
-  annotate("text", x = median(pe_sg$`1`)+.006, y = .03, label = "Median: 81.75%", vjust = -1)+
-  labs(title = "Posterior Estimated Predicition FT% for Shooting Gaurds",
-         subtitle = "Note that the plot is only consistent of estimated values",
-         x = "Estimated Average FT%",
-         y = "Probability",
-         caption = "Data source: FantasyPros") + 
-  scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  theme_classic()+
-  theme()
-
-(est_avg_ft_sg)
 ```
 
-
-**Point Guard** Predicted FT%
 ```{r}
 pg_stats<- read_csv("data/PG_stats.csv")|>
   filter(MIN >=20)|>
@@ -225,26 +147,32 @@ newobs <- tibble(.rows = 1)
 
 pe_pg <- posterior_epred(object = fit_obj_pg,
                       newdata = newobs) |> as_tibble()
-
-
-est_avg_ft_pg<- pe_pg |> 
-  ggplot(aes(x = `1`)) +
-  geom_histogram(aes(y = after_stat(count/sum(count))),bins = 100, fill = "blue", color = "black") +
-  geom_vline(xintercept = median(pe_pg$`1`), linetype = "dotted", lwd = 1.5)+
-  annotate("text", x = median(pe_pg$`1`)+.011, y = .033, label = "Median: 76.37%", vjust = -1)+
-  labs(title = "Posterior Estimated Predicition FT% for Point Gaurds",
-         subtitle = "Note that the plot is only consistent of estimated values",
-         x = "Estimated Average FT%",
-         y = "Proabability",
-         caption = "Data source: FantasyPros") + 
-  scale_x_continuous(labels = scales::number_format(accuracy = 0.005)) +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1)) +
-  theme_classic()
-
-(est_avg_ft_pg)
 ```
 
-As we can see, the guard positions seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game. 
+```{r}
+
+position <- c("PG", "SG", "SF", "PF", "C")
+median_val <- c(median(pe_pg$`1`),median(pe_sg$`1`),median(pe_sf$`1`),median(pe_pf$`1`),median(pe_c$`1`) )
+
+myTable <- data.frame(Position = position, Median = median_val)
+myTable$Position <-factor(myTable$Position, levels = myTable$Position)
+gg_bar <-myTable|>
+  ggplot(aes(x = Position, y = Median))+
+  geom_bar(stat = "identity", fill = "darkgreen", color = "black")+
+  labs(
+    title = "Predicted Free Throw % for the NBA 2023-24",
+    subtitle = "Guards tend to have a higher predicted percentage than forwards and centers.",
+    x = "NBA Position",
+    y = "Predicted FT%"
+  )+
+  theme_classic()
+
+ggplotly(gg_bar)
+
+```
+
+
+As we can see, the guard positions, especially the Shooting Guards (SG), seem to have a higher average FT%, while the Forwards and Center positions tend to have a lower average. In this project, we will analyze and predict the average FT% for any player at each position, assuming that player averages more than 20 minutes per game.
 
 ## Project Summary
 NBA FT% (Free Throw Percentage) varies based on which player plays what position. The following data that was analyzed came from the FantasyPros website. From the retrieved data, I filtered the data such that I was looking at players' free throw percentage for those who played more than 20 minutes to make a better prediction of players that will get valuable minutes next season. I predicted FT%s for each position using the Bayesian Posterior Prediction Model and determined the median of the data set was the predicted percentage. The predicted FT% for the 2023-24 NBA season for a PG is 76%, 81% for an SG, 78% for an SF, 75.5% for a PF, and 71% for a C.
